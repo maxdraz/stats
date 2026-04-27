@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://bxim3l65048c5"]
+
+[ext_resource type="Script" uid="uid://i2c0syach535" path="res://test.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dr2xtlrmeapni" path="res://addons/stats/stats.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://bakcc3fwgp0a8" path="res://addons/stats/stat.gd" id="3_lquwl"]
+[ext_resource type="Script" uid="uid://f7msstlnsbou" path="res://addons/stats/examples/hp.gd" id="4_7mycd"]
+[ext_resource type="Script" uid="uid://bsrkur70c5tw" path="res://addons/stats/examples/level.gd" id="7_4c57u"]
+[ext_resource type="Script" uid="uid://drk8n73befp51" path="res://addons/stats/stat_value_int.gd" id="7_5vw27"]
+[ext_resource type="Script" uid="uid://bsnexugpbanuo" path="res://addons/stats/examples/max_hp.gd" id="7_272bh"]
+[ext_resource type="Script" uid="uid://dwqu1wnwtvve0" path="res://sword.gd" id="7_kek77"]
+[ext_resource type="Script" uid="uid://cme2dccfqc84t" path="res://addons/item_modifier_data.gd" id="8_4c57u"]
+[ext_resource type="Script" uid="uid://brju2w6edvhhe" path="res://addons/stats/modifier.gd" id="9_efxa6"]
+
+[sub_resource type="Resource" id="Resource_7mycd"]
+script = ExtResource("4_7mycd")
+metadata/_custom_type_script = "uid://f7msstlnsbou"
+
+[sub_resource type="Resource" id="Resource_272bh"]
+script = ExtResource("7_5vw27")
+value = 100
+metadata/_custom_type_script = "uid://drk8n73befp51"
+
+[sub_resource type="Resource" id="Resource_5vw27"]
+script = ExtResource("3_lquwl")
+type = SubResource("Resource_7mycd")
+value = SubResource("Resource_272bh")
+metadata/_custom_type_script = "uid://bakcc3fwgp0a8"
+
+[sub_resource type="Resource" id="Resource_kek77"]
+script = ExtResource("7_272bh")
+metadata/_custom_type_script = "uid://bsnexugpbanuo"
+
+[sub_resource type="Resource" id="Resource_4c57u"]
+script = ExtResource("7_5vw27")
+value = 100
+metadata/_custom_type_script = "uid://drk8n73befp51"
+
+[sub_resource type="Resource" id="Resource_efxa6"]
+script = ExtResource("3_lquwl")
+type = SubResource("Resource_kek77")
+value = SubResource("Resource_4c57u")
+metadata/_custom_type_script = "uid://bakcc3fwgp0a8"
+
+[sub_resource type="Resource" id="Resource_2cqfq"]
+script = ExtResource("7_4c57u")
+metadata/_custom_type_script = "uid://bsrkur70c5tw"
+
+[sub_resource type="Resource" id="Resource_yaehf"]
+script = ExtResource("7_5vw27")
+value = 1
+metadata/_custom_type_script = "uid://drk8n73befp51"
+
+[sub_resource type="Resource" id="Resource_074og"]
+script = ExtResource("3_lquwl")
+type = SubResource("Resource_2cqfq")
+value = SubResource("Resource_yaehf")
+metadata/_custom_type_script = "uid://bakcc3fwgp0a8"
+
+[sub_resource type="Resource" id="Resource_dg77c"]
+script = ExtResource("9_efxa6")
+value = 100.0
+guid = "4882822329296940770"
+metadata/_custom_type_script = "uid://brju2w6edvhhe"
+
+[sub_resource type="Resource" id="Resource_ycdy4"]
+script = ExtResource("9_efxa6")
+value = 1.0
+type = 1
+guid = "5298774234080368727"
+metadata/_custom_type_script = "uid://brju2w6edvhhe"
+
+[sub_resource type="Resource" id="Resource_w48qg"]
+script = ExtResource("4_7mycd")
+metadata/_custom_type_script = "uid://f7msstlnsbou"
+
+[sub_resource type="Resource" id="Resource_vivmo"]
+script = ExtResource("8_4c57u")
+type = SubResource("Resource_w48qg")
+modifiers = Array[ExtResource("9_efxa6")]([SubResource("Resource_dg77c"), SubResource("Resource_ycdy4")])
+metadata/_custom_type_script = "uid://cme2dccfqc84t"
+
+[sub_resource type="Resource" id="Resource_cegan"]
+script = ExtResource("9_efxa6")
+value = 5.0
+guid = "1248621133606872663"
+metadata/_custom_type_script = "uid://brju2w6edvhhe"
+
+[sub_resource type="Resource" id="Resource_82xsv"]
+script = ExtResource("9_efxa6")
+value = 0.5
+type = 1
+guid = "4250319056475986429"
+metadata/_custom_type_script = "uid://brju2w6edvhhe"
+
+[sub_resource type="Resource" id="Resource_getpj"]
+script = ExtResource("7_4c57u")
+metadata/_custom_type_script = "uid://bsrkur70c5tw"
+
+[sub_resource type="Resource" id="Resource_ryguw"]
+script = ExtResource("8_4c57u")
+type = SubResource("Resource_getpj")
+modifiers = Array[ExtResource("9_efxa6")]([SubResource("Resource_cegan"), SubResource("Resource_82xsv")])
+metadata/_custom_type_script = "uid://cme2dccfqc84t"
+
+[node name="Main" type="Node" unique_id=1206935497 node_paths=PackedStringArray("stats", "sword")]
+script = ExtResource("1_ig7tw")
+stats = NodePath("Stats")
+sword = NodePath("Sword")
+
+[node name="Stats" type="Node" parent="." unique_id=1041723693]
+script = ExtResource("2_0xm2m")
+config = Array[ExtResource("3_lquwl")]([SubResource("Resource_5vw27"), SubResource("Resource_efxa6"), SubResource("Resource_074og")])
+metadata/_custom_type_script = "uid://dr2xtlrmeapni"
+
+[node name="Sword" type="Node" parent="." unique_id=2143585291]
+script = ExtResource("7_kek77")
+modifiers = Array[ExtResource("8_4c57u")]([SubResource("Resource_vivmo"), SubResource("Resource_ryguw")])
