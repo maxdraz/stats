@@ -60,7 +60,7 @@ func add_modifier(stat_id: String, modifier: Modifier) -> void:
 	if !base: return
 	var mods := modifiers.get_or_add(stat_id, []) as Array
 	for mod in mods:
-		if mod.guid == modifier.guid:
+		if mod == modifier:
 			return
 	modifiers[stat_id].append(modifier)
 	var modified_value = apply_modifiers(stat_id, base.get_value())	
